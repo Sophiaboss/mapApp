@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Map App</title>
+
+<!-- https://www.youtube.com/watch?v=rJaXOFfwGVw -->
+
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.1.1.js"
+        integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
+        crossorigin="anonymous"></script>
+<!-- Ajax -->
+<script type="text/javascript" 
+        src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+<!-- bootstrap -->
+<link   rel="stylesheet" 
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+</head>
+<body>
+<p>Click the button to get your coordinates.</p>
+
+<button onclick="getLocation()">Try It</button>
+
+<p id="demo"></p>
+<script>
+// Get lat and lan
+var x = document.getElementById("demo");
+
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    } else { 
+        x.innerHTML = "Geolocation is not supported by this browser.";
+    }
+}
+
+function showPosition(position) {
+    x.innerHTML = "Latitude: " + position.coords.latitude + 
+    "<br>Longitude: " + position.coords.longitude;
+  
+}
+
+//get weather
+
+function setup(){
+    
+    data = $.ajax({
+                    url: "http://api.openweathermap.org/data/2.5/weather?lat=35&lon=139&APPID=d385a95cca15013cf7298b068bb34dce&units=metric",
+                    type: 'GET',
+                    dataType: 'jsonp',
+                    cache: false,
+                    success: function(data){
+                    console.log(data)
+                    
+                                                      }
+                        });
+                     
+}
+
+function gotData(data){
+    console.log(data);
+}
+
+setup()
+
+</script>
+</body>
+</html>
