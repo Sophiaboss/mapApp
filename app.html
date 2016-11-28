@@ -33,17 +33,22 @@ function getLocation() {
     } else { 
         x.innerHTML = "Geolocation is not supported by this browser.";
     }
+    apiUrl(position.coords.latitude, position.coords.longitude)
 }
 
 function showPosition(position) {
-    x.innerHTML = "Latitude: " + position.coords.latitude + 
-    "<br>Longitude: " + position.coords.longitude;
+    console.log(position);
+    
   
 }
 
+//make api url
+function apiUrl(lat, lon){
+    url = "http://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon "&APPID=d385a95cca15013cf7298b068bb34dce&units=metric"
+}
 //get weather
 
-function setup(){
+function gotData(){
     
     data = $.ajax({
                     url: "http://api.openweathermap.org/data/2.5/weather?lat=35&lon=139&APPID=d385a95cca15013cf7298b068bb34dce&units=metric",
@@ -58,11 +63,9 @@ function setup(){
                      
 }
 
-function gotData(data){
-    console.log(data);
-}
 
-setup()
+
+gotData()
 
 </script>
 </body>
