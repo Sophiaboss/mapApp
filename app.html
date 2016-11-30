@@ -9,6 +9,8 @@
 <script src="https://code.jquery.com/jquery-3.1.1.js"
         integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
         crossorigin="anonymous"></script>
+<!-- javascript -->
+<script type="text/javascript" src="app.js"></script>
 <!-- Ajax -->
 <script type="text/javascript" 
         src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
@@ -23,50 +25,6 @@
 <button onclick="getLocation()">Try It</button>
 
 <p id="demo"></p>
-<script>
-// Get lat and lan
-var x = document.getElementById("demo");
 
-function getLocation() {
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(showPosition);
-    } else { 
-        x.innerHTML = "Geolocation is not supported by this browser.";
-    }
-    apiUrl(position.coords.latitude, position.coords.longitude)
-}
-
-function showPosition(position) {
-    console.log(position);
-    
-  
-}
-
-//make api url
-function apiUrl(lat, lon){
-    url = "http://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon "&APPID=d385a95cca15013cf7298b068bb34dce&units=metric"
-}
-//get weather
-
-function gotData(){
-    
-    data = $.ajax({
-                    url: "http://api.openweathermap.org/data/2.5/weather?lat=35&lon=139&APPID=d385a95cca15013cf7298b068bb34dce&units=metric",
-                    type: 'GET',
-                    dataType: 'jsonp',
-                    cache: false,
-                    success: function(data){
-                    console.log(data)
-                    
-                                                      }
-                        });
-                     
-}
-
-
-
-gotData()
-
-</script>
 </body>
 </html>
