@@ -29,8 +29,23 @@ function apiUrl(lat, lon){
 function gotData(newUrl){
  $.getJSON(newUrl, function(json) {
     weatherDescrip=json.weather[0].description;
+    console.log(weatherDescrip)
     weatherId=json.weather[0].id;
-                 
+    if(weatherId<700){
+        weatherId = "w"+weatherId
+        weatherId = weatherId.substring(0,2)
+        Colorscheme(weatherId);
+    }else{
+        Colorscheme("w"+ weatherId);
+    }
+    
 })
 
 }
+// constructor 
+
+function Colorscheme(type){
+    this.background= $("body").addClass(type);
+}
+
+$("body").addClass("w2")
