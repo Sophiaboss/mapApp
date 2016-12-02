@@ -1,3 +1,33 @@
+.round{
+  height:175px;
+  width:175px;
+  border: solid 2px white;
+  border-radius: 50%;
+  opacity:0.8!important;
+
+}
+
+h3{
+  position:relative;
+  top: 70px;
+}
+.center{
+  margin:auto;
+  text-align: center;
+
+}
+
+#pressure{
+  position:relative;
+  right: 115px;
+}
+
+#temperature{
+  position:relative;
+  left: 150px;
+  bottom: 50px;
+}
+
 
 /*thunderstorm*/
 .w2{

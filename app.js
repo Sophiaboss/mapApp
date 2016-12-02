@@ -1,4 +1,4 @@
-var x = $("demo");
+
 // get the location via geolocator
 function getLocation() {
 
@@ -10,11 +10,9 @@ function getLocation() {
     }
     
 }
-
+//this is broken it shows the position and then calls the apiURL --that still works
 function showPosition(position) {
-    
-    $(x).html("Latitude: " + position.coords.latitude + 
-    "<br>Longitude: " + position.coords.longitude);
+
     
    apiUrl(position.coords.latitude, position.coords.longitude)
 }
@@ -24,10 +22,11 @@ function apiUrl(lat, lon){
     url = "http://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&APPID=d385a95cca15013cf7298b068bb34dce&units=metric"
     gotData(url);
 }
-//get weather find weather id 
+//GET weather find weather id 
 
 function gotData(newUrl){
  $.getJSON(newUrl, function(json) {
+    console.log(json)
     //find the weather description and id for description
     weatherDescrip=json.weather[0].description;
     weatherId=json.weather[0].id;
@@ -52,3 +51,4 @@ function Colorscheme(type){
     this.background= $("body").addClass(type);
 }
 
+getLocation();
