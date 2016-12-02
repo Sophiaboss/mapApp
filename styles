@@ -3,7 +3,8 @@
   width:175px;
   border: solid 2px white;
   border-radius: 50%;
-  opacity:0.8!important;
+  /*background: rgba(200, 54, 54, 0.5); */
+   background: rgba(255, 245, 238, 0.2); 
 
 }
 
