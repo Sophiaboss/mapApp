@@ -14,6 +14,8 @@
 <!-- Ajax -->
 <script type="text/javascript" 
         src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+<!-- google fonts -->
+<link href="https://fonts.googleapis.com/css?family=Yellowtail" rel="stylesheet">
 <!-- bootstrap -->
 <link   rel="stylesheet" 
         href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
@@ -21,18 +23,21 @@
       href="styles">
 </head>
 <body>
-<h1>weather</h1>
+
+
 <div class="container">
+<h1>weather</h1>
+<div class="round center" id="humidity"><h3>Humdity <span id= "h">20</span></h3></div>
+<div class="round center" id="pressure"><h3>Pressure</h3><h3 id="p">40</h3></div>
+<div class="round center" id="temperature"><h3>
+Temperature </h3><h3 id="t">3</h3></div>
+<p id="result">rain</p>
 
-<div class="round center" id="humdity"><h3>Humdity <span id= "h">20</span></h3></div>
-<div class="round center" id="pressure"><h3>Pressure <span id="p">40</span></h3></div>
-<div class="round center" id="temperature"><h3>Temperature <span id="t">3</span></h3></div>
-
-<div class="input-group col-lg-4 col-lg-offset-4">
+<div class="input-group col-lg-4 col-lg-offset-4" id="inputId">
 
 <span class="input-group-addon">@</span>
 
-<input type="text" class="form-control" id="cityInput" placeholder="displaying current location enter city to change" id="city">
+<input type="text" class="form-control" id="cityInput" placeholder="displaying current location enter city to change">
 
 </div>
 

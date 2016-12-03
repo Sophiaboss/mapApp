@@ -28,9 +28,9 @@ function gotData(newUrl){
  $.getJSON(newUrl, function(json) {
     console.log(json)
     //find the weather description and id for description
-    weatherDescrip=json.weather[0].description;
+    displayCityWeather(json.name ,json.weather[0].description)
     callConstructor(json.weather[0].id)
-    displayForcast(json.main.humidity, json.main.pressure, json.main.temp);
+    displayForcast(json.main.humidity, json.main.pressure, json.main.temp, json.weather[0].description);
     //not working supposed to press enter and get input
     $("input[type='text']").keypress(function(){
         var city = this.value
@@ -42,10 +42,16 @@ function gotData(newUrl){
 })
 }
 
-function displayForcast(humidity, pressure, temperature){
+function displayForcast(humidity, pressure, temperature, result ){
     $("#h").html(humidity)
     $("#p").html(pressure);
     $("#t").html(temperature);
+    $("#result").html(result);
+
+}
+
+function displayCityWeather(city, weather){
+    $("h1").html("{"+city+ ": " + weather+"}");
 
 }
     
