@@ -1,24 +1,31 @@
 body{
-  color: white;
+  color: #7D7D7D;
 }
 
 h1{
   font-family: 'Yellowtail', cursive;
 }
+
+button{
+
+  height:50px;
+  width:50px;
+  border-radius: 50%;
+  position:relative;
+  left: 75px;
+  bottom: 20px;
+  background: rgba(255, 245, 238, 0.2); 
+}
 .round{
   height:275px;
   width:275px;
-  border: solid 2px white;
+  border: solid 2px #DCDCDC;
   border-radius: 50%;
   /*background: rgba(200, 54, 54, 0.5); */
    background: rgba(255, 245, 238, 0.2); 
 
 }
 
-/*h3{
-  position:relative;
-  top: 70px;
-}*/
 
 .center{
   margin:auto;
@@ -74,7 +81,7 @@ h1{
   bottom: 600px;
   font-family: 'Yellowtail', cursive;
   font-size: 2em;
-  text-shadow: -1px 0 #DCDCDC, 0 1px #DCDCDC, 1px 0 #DCDCDC, 0 -1px #DCDCDC;
+ /* text-shadow: -1px 0 #DCDCDC, 0 1px #DCDCDC, 1px 0 #DCDCDC, 0 -1px #DCDCDC;*/
 }
 /*thunderstorm*/
 .w2{

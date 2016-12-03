@@ -10,19 +10,42 @@ function getLocation() {
     }
     
 }
-//this is broken it shows the position and then calls the apiURL --that still works
+//Send coordinates to openweather
 function showPosition(position) {
 
     
    apiUrl(position.coords.latitude, position.coords.longitude)
 }
 
+function cityCall(){
+    $("input[type='text']").keypress(function(){
+        city = this.value
+        if(event.keyCode == 13){
+            console.log(this.value)
+            apiCityUrl(this.value);
+            this.value="";
+        }
+    })
+}
+
 //make api url with arguments
 function apiUrl(lat, lon){
-    url = "http://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&APPID=d385a95cca15013cf7298b068bb34dce&units=metric"
+   
+    url = "http://api.openweathermap.org/data/2.5/weather?units=imperial&lat=" + lat + "&lon=" + lon + "&APPID=d385a95cca15013cf7298b068bb34dce" 
+    
     gotData(url);
 }
 //GET weather find weather id 
+
+ //problem doesn't like the cities
+        //need to change unit variable
+function apiCityUrl(city){
+    console.log(city)
+    url = "http://api.openweathermap.org/data/2.5/weather?q=" + city +
+        "&APPID=d385a95cca15013cf7298b068bb34dce&units=metric"
+    gotData(url);
+}
+       
 
 function gotData(newUrl){
  $.getJSON(newUrl, function(json) {
@@ -31,14 +54,9 @@ function gotData(newUrl){
     displayCityWeather(json.name ,json.weather[0].description)
     callConstructor(json.weather[0].id)
     displayForcast(json.main.humidity, json.main.pressure, json.main.temp, json.weather[0].description);
-    //not working supposed to press enter and get input
-    $("input[type='text']").keypress(function(){
-        var city = this.value
-        if(event.keycode == 13){
-            console.log(city);
-            this.value="";
-        }
-    })
+    //allow for cities to be entered instead
+    cityCall();
+    
 })
 }
 
@@ -75,4 +93,18 @@ function Colorscheme(type){
     this.background= $("body").addClass(type);
 }
 
+//change units
+
+function units(){
+    var unitsM="metric"
+    var count =0;
+    $("button").on("click", function(){
+        if(count%2==0){
+            unitsM="metric";
+        }else{
+            untisM="imperial";
+        }
+    })
+//need to figure out a call
+}
 getLocation();
