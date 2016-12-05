@@ -10,6 +10,22 @@ function getLocation() {
     }
     
 }
+//bug wont change more than once
+function units(city){
+    var count =0;
+    $("button").on("click", function(){
+        if($("#unit").text()=="F"){
+            $("#unit").text("C");
+            apiUrl(city, "na", "metric");
+            
+        }else{
+            apiUrl(city, "na", "imperial");
+            $("#unit").text("F");
+
+        }
+    })
+    
+}
 //Send coordinates to openweather
 function showPosition(position) {
 
@@ -28,24 +44,21 @@ function cityCall(){
     })
 }
 
+
+
 //make api url with arguments
 
-function apiUrl(cityOrLat, lon){
-    // units=units();
-    console.log(cityOrLat, lon)
-    
+function apiUrl(cityOrLat,lon, units){
+    console.log(units)
+    units=units||"metric"
     if(typeof(cityOrLat) == "number"){
-        url = "http://api.openweathermap.org/data/2.5/weather?units=metric&lat=" + cityOrLat + "&lon=" + lon + "&APPID=d385a95cca15013cf7298b068bb34dce" 
+        url = "http://api.openweathermap.org/data/2.5/weather?units=imperial&lat=" + cityOrLat + "&lon=" + lon + "&APPID=d385a95cca15013cf7298b068bb34dce" 
     }else{
-        url = "http://api.openweathermap.org/data/2.5/weather?units=metric&q=" + cityOrLat + "&APPID=d385a95cca15013cf7298b068bb34dce"
+        url = "http://api.openweathermap.org/data/2.5/weather?units="+units+"&q=" + cityOrLat + "&APPID=d385a95cca15013cf7298b068bb34dce"
     }
-    
     gotData(url);
 }
 
-
-
-       
 
 function gotData(newUrl){
  $.getJSON(newUrl, function(json) {
@@ -56,6 +69,7 @@ function gotData(newUrl){
     displayForcast(json.main.humidity, json.main.pressure, json.main.temp, json.weather[0].description);
     //allow for cities to be entered instead
     cityCall();
+    units(json.name);
     
 })
 }
@@ -90,21 +104,11 @@ function callConstructor(weatherId){
 // constructor 
 // to add the right colorscheme
 function Colorscheme(type){
+    console.log(type);
     this.background= $("body").addClass(type);
 }
 
 //change units
 
-function units(){
-    var unitsM="metric"
-    var count =0;
-    $("button").on("click", function(){
-        if(count%2==0){
-            unitsM="metric";
-        }else{
-            untisM="imperial";
-        }
-    })
-return unitsM;
-}
+
 getLocation();

@@ -1,5 +1,6 @@
 body{
-  color: #7D7D7D;
+ /* color: #7D7D7D;*/
+ color:white;
 }
 
 h1{
