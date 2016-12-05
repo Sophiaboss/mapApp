@@ -22,29 +22,29 @@ function cityCall(){
         city = this.value
         if(event.keyCode == 13){
             console.log(this.value)
-            apiCityUrl(this.value);
+            apiUrl(this.value);
             this.value="";
         }
     })
 }
 
 //make api url with arguments
-function apiUrl(lat, lon){
-   
-    url = "http://api.openweathermap.org/data/2.5/weather?units=imperial&lat=" + lat + "&lon=" + lon + "&APPID=d385a95cca15013cf7298b068bb34dce" 
+
+function apiUrl(cityOrLat, lon){
+    // units=units();
+    console.log(cityOrLat, lon)
+    
+    if(typeof(cityOrLat) == "number"){
+        url = "http://api.openweathermap.org/data/2.5/weather?units=metric&lat=" + cityOrLat + "&lon=" + lon + "&APPID=d385a95cca15013cf7298b068bb34dce" 
+    }else{
+        url = "http://api.openweathermap.org/data/2.5/weather?units=metric&q=" + cityOrLat + "&APPID=d385a95cca15013cf7298b068bb34dce"
+    }
     
     gotData(url);
 }
-//GET weather find weather id 
 
- //problem doesn't like the cities
-        //need to change unit variable
-function apiCityUrl(city){
-    console.log(city)
-    url = "http://api.openweathermap.org/data/2.5/weather?q=" + city +
-        "&APPID=d385a95cca15013cf7298b068bb34dce&units=metric"
-    gotData(url);
-}
+
+
        
 
 function gotData(newUrl){
@@ -105,6 +105,6 @@ function units(){
             untisM="imperial";
         }
     })
-//need to figure out a call
+return unitsM;
 }
 getLocation();
